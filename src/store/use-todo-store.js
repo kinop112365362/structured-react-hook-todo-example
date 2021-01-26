@@ -6,9 +6,12 @@ import createStore from 'structured-react-hook'
 import { TodoItem } from '../component/ToDoItem'
 import { InputCheckBox } from '../component/Styled'
 import { Checkbox, Button, Typography, Space } from 'antd'
+import {css} from '@emotion/css'
 
-const { Paragraph, Text } = Typography
 
+const pl24 = css` 
+  padding-left: 24px;
+`
 export const storeName = 'toDoStore'
 export const useTodoStore = createStore({
   name: storeName,
@@ -64,12 +67,14 @@ export const useTodoStore = createStore({
                           )
                         }}
                       />
-                      <Text strong> 全部完成/取消</Text>
+                      <Typography.Text strong> 全部完成/取消</Typography.Text>
                     </Space>
-                    <div>
-                      合计完成 {this.state.totalCount} / {this.state.total} 项{' '}
-                    </div>
-                    <div>你有 {this.state.editCount} 项待保存 </div>
+                    <Space>
+                      <div className={pl24}>
+                        合计完成 {this.state.totalCount} / {this.state.total} 项{' '}
+                      </div>
+                      <div>你有 {this.state.editCount} 项待保存 </div>
+                    </Space>
                   </Space>
                 </li>
               </li>

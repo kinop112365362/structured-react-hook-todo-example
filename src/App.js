@@ -30,7 +30,7 @@ function App () {
         </NavLink>
         <NavLink>
           <Link router={route} routeName='logicReuse'>
-            Membrane
+            Membrane Mode
           </Link>
         </NavLink>
       </nav>

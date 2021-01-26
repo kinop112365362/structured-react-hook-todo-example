@@ -3,15 +3,10 @@
 import React from 'react'
 import { getTodolist } from './service'
 import createStore from 'structured-react-hook'
-import { TodoItem } from '../component/ToDoItem'
 import { InputCheckBox } from '../component/Styled'
-import { Checkbox, Button, Typography, Space } from 'antd'
-import {css} from '@emotion/css'
+import { css } from '@emotion/css'
+import { renderUl } from './view/render-ul'
 
-
-const pl24 = css` 
-  padding-left: 24px;
-`
 export const storeName = 'toDoStore'
 export const useTodoStore = createStore({
   name: storeName,
@@ -37,52 +32,7 @@ export const useTodoStore = createStore({
   },
   view: {
     // @@渲染 todo 列表
-    renderUl (ul) {
-      if (this.state.loading) {
-        return (
-          <>
-            <ul className={ul}>
-              {this.state.todolist.map(todo => (
-                <TodoItem key={todo.id} todo={todo} />
-              ))}
-              <li>
-                <Button
-                  type='primary'
-                  block
-                  onClick={this.controller.onAddTodoButtonClick}
-                >
-                  新增一项待办
-                </Button>
-              </li>
-              <li>
-                <li style={{ color: this.state.textColor }}>
-                  <Space>
-                    <Space>
-                      <Checkbox
-                        type='checkBox'
-                        checked={this.state.completed}
-                        onChange={e => {
-                          this.controller.onTodolistCompletedCheck(
-                            e.target.checked
-                          )
-                        }}
-                      />
-                      <Typography.Text strong> 全部完成/取消</Typography.Text>
-                    </Space>
-                    <Space>
-                      <div className={pl24}>
-                        合计完成 {this.state.totalCount} / {this.state.total} 项{' '}
-                      </div>
-                      <div>你有 {this.state.editCount} 项待保存 </div>
-                    </Space>
-                  </Space>
-                </li>
-              </li>
-            </ul>
-          </>
-        )
-      }
-    }
+    renderUl
   },
   service: {
     // @@ 切换第 ${2} 项的状态为 ${1}
